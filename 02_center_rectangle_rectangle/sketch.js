@@ -6,7 +6,8 @@ function running() {
 }
 
 function setup() {
-
+    r.InitWindow(800, 500, "RayLib");
+    r.SetTargetFPS(60);
 }
 
 function update() {

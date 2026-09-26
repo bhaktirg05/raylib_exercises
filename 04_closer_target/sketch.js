@@ -37,21 +37,9 @@ function draw() {
 
 
     if (distance1 > distance2) {
-        r.DrawLine(
-            sourceX,
-            sourceY,
-            target2_X,
-            target2_Y,
-            r.BLACK,
-        );
+        r.DrawLine(sourceX, sourceY, target2_X, target2_Y, r.BLACK,);
     } else {
-        r.DrawLine(
-            sourceX,
-            sourceY,
-            target1_X,
-            target1_Y,
-            r.BLACK,
-        );
+        r.DrawLine(sourceX, sourceY, target1_X, target1_Y, r.BLACK,);
     }
     r.EndDrawing();
 }

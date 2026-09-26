@@ -7,12 +7,20 @@ function newCoordinates(x, y) {
 }
 
 const r = require("raylib");
-const outerRectangleX = 200;
-const outerRectangleY = 100;
-const outerRectangleWidth = 500;
-const outerRectangleHeight = 300;
-const innerRectangleWidth = outerRectangleWidth * 0.8;
-const innerRectangleHeight = outerRectangleHeight * 0.8;
+const outerRecX = 200;
+const outerRecY = 100;
+const outerRecWidth = 500;
+const outerRecHeight = 300;
+const innerRecWidth = outerRecWidth * 0.8;
+const innerRecHeight = outerRecHeight * 0.8;
+const innerRecX = newCoordinates(
+    centerOfRectangleCoordinates(outerRecX, outerRecWidth),
+    innerRecWidth,
+);
+const innerRecY = newCoordinates(
+    centerOfRectangleCoordinates(outerRecY, outerRecHeight),
+    innerRecHeight,
+);
 
 r.InitWindow(800, 500, "RayLib");
 r.SetTargetFPS(60);
@@ -21,24 +29,18 @@ while (!r.WindowShouldClose()) {
     r.BeginDrawing();
     r.ClearBackground(r.BLUE);
     r.DrawRectangle(
-        outerRectangleX,
-        outerRectangleY,
-        outerRectangleWidth,
-        outerRectangleHeight,
+        outerRecX,
+        outerRecY,
+        outerRecWidth,
+        outerRecHeight,
         r.WHITE,
     );
 
     r.DrawRectangle(
-        newCoordinates(
-            centerOfRectangleCoordinates(outerRectangleX, outerRectangleWidth),
-            innerRectangleWidth,
-        ),
-        newCoordinates(
-            centerOfRectangleCoordinates(outerRectangleY, outerRectangleHeight),
-            innerRectangleHeight,
-        ),
-        innerRectangleWidth,
-        innerRectangleHeight,
+        innerRecX,
+        innerRecY,
+        innerRecWidth,
+        innerRecHeight,
         r.RED,
     );
     r.EndDrawing();

@@ -1,8 +1,10 @@
-function calculateDistanceOfTwoPoints(x1, y1, x2, y2) {
-    return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5;
-}
 
 const r = require("raylib");
+const g = require("./geometry");
+
+const Width = 800;
+const Height = 500;
+const FPS = 60;
 const sourceX = 100;
 const sourceY = 400;
 const target1_X = 600;
@@ -11,29 +13,28 @@ const target2_X = 200;
 const target2_Y = 150;
 const radius = 20;
 
+function running() {
+    return !r.WindowShouldClose();
+}
 
-r.InitWindow(800, 500, "RayLib");
-r.SetTargetFPS(60);
+function setup() {
+    r.InitWindow(Width, Height, "RayLib");
+    r.SetTargetFPS(FPS);
+}
 
-while (!r.WindowShouldClose()) {
+function draw() {
     r.BeginDrawing();
     r.ClearBackground(r.WHITE);
+
     r.DrawCircle(sourceX, sourceY, radius, r.BLUE);
     r.DrawCircle(target1_X, target1_Y, radius, r.RED);
     r.DrawCircle(target2_X, target2_Y, radius, r.GREEN);
 
-    const distance1 = calculateDistanceOfTwoPoints(
-        sourceX,
-        sourceY,
-        target1_X,
-        target1_Y,
-    );
-    const distance2 = calculateDistanceOfTwoPoints(
-        sourceX,
-        sourceY,
-        target2_X,
-        target2_Y,
-    );
+    const distance1 = g.calculateDistance(
+        sourceX, sourceY, target1_X, target1_Y,);
+    const distance2 = g.calculateDistance(
+        sourceX, sourceY, target2_X, target2_Y,);
+
 
     if (distance1 > distance2) {
         r.DrawLine(
@@ -55,4 +56,13 @@ while (!r.WindowShouldClose()) {
     r.EndDrawing();
 }
 
-r.CloseWindow();
+function teardown() {
+    r.CloseWindow();
+}
+
+module.exports = {
+    running,
+    setup,
+    draw,
+    teardown,
+};
